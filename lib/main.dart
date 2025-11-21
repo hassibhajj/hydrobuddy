@@ -25,15 +25,63 @@ class WaterIntakePage extends StatefulWidget {
 }
 
 class _WaterIntakePageState extends State<WaterIntakePage> {
+  final TextEditingController weightController = TextEditingController();
+  final TextEditingController exerciseController = TextEditingController();
+  double? totalWater;
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
       appBar: AppBar(
         title: const Text("HydroBuddy - Water Intake"),
       ),
-        body: const Center(
-          child: Text(" lets calculate your daily water intake"),
-        ),
+        body: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "enter your details:",
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(height:20),
+                TextField(
+                  controller: weightController,
+                  keyboardType: TextInputType.number,
+                  decoration: InputDecoration(
+                    labelText: "weight (KG)",
+                    border: OutlineInputBorder(),
+                  ),
+                ),
+              SizedBox( height: 20),
+              TextField(
+                controller : exerciseController,
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                  labelText: "Exercise(minutes per day)",
+                  border: OutlineInputBorder(),
+                ),
+              ),
+              SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {
+                  final double weight = double.tryParse(
+                      weightController.text) ?? 0;
+                  final double exercise = double.tryParse(
+                      exerciseController.text) ?? 0;
+
+                  final double baseline = weight * 0.033;
+                  final double extra = (exercise / 30) * 0.035;
+                  final double result = baseline + extra;
+                  setState(() {
+                    totalWater = result;
+                  });
+                },
+                child: const Text("Calculate"),
+              )
+            ],
+
+          )
+        )
 
     );
   }
