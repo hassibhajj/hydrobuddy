@@ -52,6 +52,7 @@ class _WaterIntakePageState extends State<WaterIntakePage> {
                     border: OutlineInputBorder(),
                   ),
                 ),
+
               SizedBox( height: 20),
               TextField(
                 controller : exerciseController,
@@ -63,6 +64,7 @@ class _WaterIntakePageState extends State<WaterIntakePage> {
               ),
               SizedBox(height: 20),
               ElevatedButton(
+
                 onPressed: () {
                   final double weight = double.tryParse(
                       weightController.text) ?? 0;
@@ -77,7 +79,14 @@ class _WaterIntakePageState extends State<WaterIntakePage> {
                   });
                 },
                 child: const Text("Calculate"),
-              )
+              ),
+              SizedBox(height: 20),
+              if(totalWater != null)
+                Text(
+                  "Recommended daily water intake: ${totalWater!.toStringAsFixed(2)} liters",
+                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+
             ],
 
           )
