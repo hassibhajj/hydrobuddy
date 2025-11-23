@@ -32,7 +32,11 @@ class _WaterIntakePageState extends State<WaterIntakePage> {
   Widget build(BuildContext context) {
     return  Scaffold(
       appBar: AppBar(
-        title: const Text("HydroBuddy - Water Intake"),
+        backgroundColor: Colors.blue,
+        centerTitle: true,
+        title: const Text("HydroBuddy -your Water Intake calculator",
+        style: TextStyle( fontSize: 20, fontWeight: FontWeight.bold,
+        color: Colors.white)),
       ),
         body: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -41,7 +45,7 @@ class _WaterIntakePageState extends State<WaterIntakePage> {
             children: [
               Text(
                 "enter your details:",
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color:Colors.blue),
               ),
               SizedBox(height:20),
                 TextField(
@@ -49,7 +53,11 @@ class _WaterIntakePageState extends State<WaterIntakePage> {
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
                     labelText: "weight (KG)",
-                    border: OutlineInputBorder(),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    filled: true,
+                    fillColor: Colors.grey[200],
                   ),
                 ),
 
@@ -59,11 +67,23 @@ class _WaterIntakePageState extends State<WaterIntakePage> {
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
                   labelText: "Exercise(minutes per day)",
-                  border: OutlineInputBorder(),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  filled: true,
+                  fillColor: Colors.grey[200],
                 ),
               ),
               SizedBox(height: 20),
               ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue,
+                  foregroundColor: Colors.white,
+                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
 
                 onPressed: () {
                   final double weight = double.tryParse(
@@ -86,7 +106,14 @@ class _WaterIntakePageState extends State<WaterIntakePage> {
                   "Recommended daily water intake: ${totalWater!.toStringAsFixed(2)} liters",
                       style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
-
+                if(totalWater !=null)
+                  Padding(
+                    padding: const EdgeInsets.only(top:12),
+                    child: Text(
+                      "tip : Drink water consistently throughout the day to stay hydrated!",
+                    style: TextStyle(fontSize: 16, color: Colors.grey[700]),
+                  ),
+                  ),
             ],
 
           )
