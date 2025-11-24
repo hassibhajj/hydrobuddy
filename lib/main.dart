@@ -100,6 +100,29 @@ class _WaterIntakePageState extends State<WaterIntakePage> {
                 },
                 child: const Text("Calculate"),
               ),
+              SizedBox(height:10),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.red,
+                  foregroundColor: Colors.white,
+                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical :14),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12,
+                    ),
+                  ),
+                ),
+                  onPressed: () {
+                    setState(() {
+                      weightController.clear();
+                      exerciseController.clear();
+                      totalWater = null;
+
+
+                      });
+                  },
+                  child: const Text("reset"),
+
+              ),
               SizedBox(height: 20),
               if(totalWater != null)
                 Text(
